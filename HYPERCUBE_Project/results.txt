@@ -1,0 +1,232 @@
+Hypercube
+Query: 0
+Nearest neighbor-1: image_id_29
+distanceApproximate: 1.178242
+distanceTrue: 0.458501
+
+Hypercube
+Query: 1
+Nearest neighbor-1: image_id_22
+distanceApproximate: 0.640127
+distanceTrue: 0.445237
+
+Hypercube
+Query: 2
+Nearest neighbor-1: image_id_4
+distanceApproximate: 0.621990
+distanceTrue: 0.344894
+
+Hypercube
+Query: 3
+Nearest neighbor-1: image_id_22
+distanceApproximate: 0.681291
+distanceTrue: 0.343397
+
+Hypercube
+Query: 4
+Nearest neighbor-1: image_id_592
+distanceApproximate: 0.669806
+distanceTrue: 0.421004
+
+Hypercube
+Query: 5
+Nearest neighbor-1: image_id_1
+distanceApproximate: 1.104613
+distanceTrue: 0.499952
+
+Hypercube
+Query: 6
+Nearest neighbor-1: image_id_108
+distanceApproximate: 0.591803
+distanceTrue: 0.441342
+
+Hypercube
+Query: 7
+Nearest neighbor-1: image_id_24
+distanceApproximate: 0.735475
+distanceTrue: 0.303952
+
+Hypercube
+Query: 8
+Nearest neighbor-1: image_id_92
+distanceApproximate: 0.629030
+distanceTrue: 0.420049
+
+Hypercube
+Query: 9
+Nearest neighbor-1: image_id_7905
+distanceApproximate: 0.593430
+distanceTrue: 0.413337
+
+Hypercube
+Query: 10
+Nearest neighbor-1: image_id_225
+distanceApproximate: 0.685232
+distanceTrue: 0.457980
+
+Hypercube
+Query: 11
+Nearest neighbor-1: image_id_78
+distanceApproximate: 0.509376
+distanceTrue: 0.338472
+
+Hypercube
+Query: 12
+Nearest neighbor-1: image_id_24
+distanceApproximate: 0.593579
+distanceTrue: 0.389202
+
+Hypercube
+Query: 13
+Nearest neighbor-1: image_id_29
+distanceApproximate: 1.195132
+distanceTrue: 0.383894
+
+Hypercube
+Query: 14
+Nearest neighbor-1: image_id_38
+distanceApproximate: 1.061938
+distanceTrue: 0.468447
+
+Hypercube
+Query: 15
+Nearest neighbor-1: image_id_16
+distanceApproximate: 0.641488
+distanceTrue: 0.423424
+
+Hypercube
+Query: 16
+Nearest neighbor-1: image_id_21
+distanceApproximate: 1.182115
+distanceTrue: 0.365511
+
+Hypercube
+Query: 17
+Nearest neighbor-1: image_id_24
+distanceApproximate: 0.695893
+distanceTrue: 0.408209
+
+Hypercube
+Query: 18
+Nearest neighbor-1: image_id_9
+distanceApproximate: 0.641565
+distanceTrue: 0.442558
+
+Hypercube
+Query: 19
+Nearest neighbor-1: image_id_7
+distanceApproximate: 1.206909
+distanceTrue: 0.386339
+
+Hypercube
+Query: 20
+Nearest neighbor-1: image_id_5557
+distanceApproximate: 0.390256
+distanceTrue: 0.282060
+
+Hypercube
+Query: 21
+Nearest neighbor-1: image_id_19
+distanceApproximate: 0.635965
+distanceTrue: 0.158682
+
+Hypercube
+Query: 22
+Nearest neighbor-1: image_id_105
+distanceApproximate: 0.409641
+distanceTrue: 0.322597
+
+Hypercube
+Query: 23
+Nearest neighbor-1: image_id_583498
+distanceApproximate: 0.533051
+distanceTrue: 0.402251
+
+Hypercube
+Query: 24
+Nearest neighbor-1: image_id_4
+distanceApproximate: 0.634094
+distanceTrue: 0.303519
+
+Hypercube
+Query: 25
+Nearest neighbor-1: image_id_153
+distanceApproximate: 0.602653
+distanceTrue: 0.431781
+
+Hypercube
+Query: 26
+Nearest neighbor-1: image_id_78
+distanceApproximate: 0.518673
+distanceTrue: 0.339134
+
+Hypercube
+Query: 27
+Nearest neighbor-1: image_id_265
+distanceApproximate: 0.621047
+distanceTrue: 0.344034
+
+Hypercube
+Query: 28
+Nearest neighbor-1: image_id_574
+distanceApproximate: 0.671925
+distanceTrue: 0.375433
+
+Hypercube
+Query: 29
+Nearest neighbor-1: image_id_4
+distanceApproximate: 0.707705
+distanceTrue: 0.246119
+
+Hypercube
+Query: 30
+Nearest neighbor-1: image_id_58
+distanceApproximate: 0.608213
+distanceTrue: 0.399625
+
+Hypercube
+Query: 31
+Nearest neighbor-1: image_id_92
+distanceApproximate: 0.667644
+distanceTrue: 0.214286
+
+Hypercube
+Query: 32
+Nearest neighbor-1: image_id_0
+distanceApproximate: 0.745515
+distanceTrue: 0.368359
+
+Hypercube
+Query: 33
+Nearest neighbor-1: image_id_596
+distanceApproximate: 1.177213
+distanceTrue: 0.433384
+
+Hypercube
+Query: 34
+Nearest neighbor-1: image_id_19
+distanceApproximate: 0.619387
+distanceTrue: 0.399711
+
+Hypercube
+Query: 35
+Nearest neighbor-1: image_id_40
+distanceApproximate: 0.891589
+distanceTrue: 0.238235
+
+Hypercube
+Query: 36
+Nearest neighbor-1: image_id_28
+distanceApproximate: 1.154425
+distanceTrue: 0.219239
+
+Hypercube
+Query: 37
+Nearest neighbor-1: image_id_28
+distanceApproximate: 1.062898
+distanceTrue: 0.327877
+
+Hypercube
+Query: 38
+Nearest neighbor-1: image_id_21
+distanceApproxima
