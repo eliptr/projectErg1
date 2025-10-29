@@ -78,7 +78,7 @@ NearestNeighbor* find_nn_hc(hypercube* h,const double* q,const double* dataset,i
     NearestNeighbor* candidates_list=(NearestNeighbor*)malloc(sizeof(NearestNeighbor)*max_candidates_M);  // δεσμεύουμε δυναμικά πίνακα με δεικτεε σε nn
     if(candidates_list==NULL){
         perror("error in find nn hc");
-        exit("1");
+        exit(1);
     }
     int number_of_candidates=0; 
     int *visited_vertices=(int*)calloc(num_vertices,sizeof(int));  // δημιουργούμε έναν άδειο πίνακα που θα αποθηκεύει τα διανύσματα που έχουμε βρει
@@ -108,7 +108,7 @@ NearestNeighbor* find_nn_hc(hypercube* h,const double* q,const double* dataset,i
                 break; // Όριο M (υποψηφίων) επιτεύχθηκε
             }
             int vector_index = current_bucket->vectors[i]; // Παίρνουμε το index του vector
-            if(is_added[vector_index]==0){  Αν το vector δεν έχει ήδη προστεθεί
+            if(is_added[vector_index]==0){//  Αν το vector δεν έχει ήδη προστεθεί
                 const double *current_vector=&dataset[vector_index*dim];  // Δείκτης στο vector
                 double distance=euclidean_distance(q, current_vector,dim);// Υπολογισμός απόστασης
                 candidates_list[number_of_candidates].index=vector_index;// Αποθηκεύουμε το index kai την απόσταση
