@@ -183,41 +183,48 @@ int main(int argc,char *argv[]){
     int use_hypercube=1; // Έλεγχος για την χρήση hypercube ( Απλά για να υπακούει στις προδιαγραφές)
     int use_range=1; // Default τιμή για την use range, ο χρήστης με το input μπορει να το αλλάξει.
     int opt; // Θα μας βοηθήσει με την getopt να διακρίνουμε τις περιπτώσεις των arguments
-    while((opt=getopt(argc,argv,"d:q:k:w:M:P:o:N:R:t:h:r:"))!=-1){
-        switch(opt){
-            case 'd': train_file_path=optarg; break; // Αρχείο εκπαίδευσης (train)
-            case 'q':query_file_path=optarg; break;// Αρχείο ερωτημάτων (query)
-            case 'k':K_PROJ=atoi(optarg); break;  // ΑΤΟΙ μετατρέπει το str σε int
-            case 'w':W=atof(optarg); break;// ATOF Κάνει το ίδιο για float
-            case 'M':MAX_CANDIDATES=atoi(optarg); break;
-            case 'P':PROBES=atoi(optarg); break;
-            case 'o':output_file=optarg; break; // Αρχείο εξόδου
-            case 'N':N_NEIGHBORS=atoi(optarg); break;
-            case 'R':R_RADIUS=atof(optarg); break;
-            case 't': // Επιλέγουμε μεταξύ mnsit και sift δεδομένα
-                if(strcasecmp(optarg,"mnist")==0) data_type=DATA_TYPE_MNIST; // Σε κάθε κλήση της strcasecmp, συγκρίνουμε το στρινγκ που παίρνουμε με τις επιλογές
-                else if(strcasecmp(optarg,"sift")==0) data_type=DATA_TYPE_SIFT;
-                else{fprintf(stderr,"Unknown dataset type\n");exit(1);}
-                break;
-            case 'h': // Παράμετρος που δείχνει την χρήση hypercube
-                if(strcasecmp(optarg,"hypercube")==0) use_hypercube=1;
-                else if(strcasecmp(optarg,"lsh")==0) use_hypercube=0;
-                else{fprintf(stderr,"Unknown method\n"); exit(1);}
-                break;
-            case 'r': // Παράμετρος για την χρήση του range search
-                if(strcasecmp(optarg,"true")==0) use_range=1;
-                else if(strcasecmp(optarg,"false")==0) use_range=0;
-                else{fprintf(stderr,"Unknown range option\n"); exit(1);}
-                break;
-            default:  
-                fprintf(stderr,"Usage: %s -d train -q query -k K -w W -M M -P P -o output -N N -R R -t mnist|sift -h hypercube|lsh -r true|false\n", argv[0]);
-                exit(1);
-        }
+    for (int i=1;i<argc;i++) {
+    if (strcmp(argv[i],"-d")==0 && i+1<argc)
+        train_file_path = argv[++i];
+    else if (strcmp(argv[i],"-q")==0 && i+1<argc)
+        query_file_path = argv[++i];
+    else if (strcmp(argv[i],"-kproj")==0 && i+1<argc)
+        K_PROJ = atoi(argv[++i]);
+    else if (strcmp(argv[i],"-w")==0 && i+1<argc)
+        W = atof(argv[++i]);
+    else if (strcmp(argv[i],"-M")==0 && i+1<argc)
+        MAX_CANDIDATES = atoi(argv[++i]);
+    else if (strcmp(argv[i],"-probes")==0 && i+1<argc)
+        PROBES = atoi(argv[++i]);
+    else if (strcmp(argv[i],"-o")==0 && i+1<argc)
+        output_file = argv[++i];
+    else if (strcmp(argv[i],"-N")==0 && i+1<argc)
+        N_NEIGHBORS = atoi(argv[++i]);
+    else if (strcmp(argv[i],"-R")==0 && i+1<argc)
+        R_RADIUS = atof(argv[++i]);
+    else if (strcmp(argv[i],"-type")==0 && i+1 <argc) {
+        if (strcasecmp(argv[i+1],"sift")==0) data_type = DATA_TYPE_SIFT;
+        else if (strcasecmp(argv[i+1],"mnist")==0) data_type = DATA_TYPE_MNIST;
+        else { fprintf(stderr,"Unknown dataset type\n"); exit(1); }
+        i++;
     }
-    if(!train_file_path||!query_file_path||!output_file){ //ελέχουμε ότι τα πεδιά των αρχείων δεν είναι κενά 
-        fprintf(stderr,"Files not included");
+    else if (strcmp(argv[i],"-range")==0 && i+1<argc) {
+        if (strcasecmp(argv[i+1],"true")==0) use_range = 1;
+        else if (strcasecmp(argv[i+1],"false")==0) use_range = 0;
+        else { fprintf(stderr,"Unknown range value\n"); exit(1); 
+        } 
+        i++;
+    }
+    else if (strcmp(argv[i],"-hypercube")==0)
+        use_hypercube = 1;
+    else {
+        fprintf(stderr,"Unknown or incomplete option: %s\n", argv[i]);
+        fprintf(stderr,"Usage: %s -d <input> -q <query> -kproj <int> -w <double> -M <int> "
+                        "-probes <int> -o <output> -N <int> -R <radius>  "
+                        "-type <sift|mnist> -range <true|false> -hypercube\n", argv[0]);
         exit(1);
     }
+}
     srand(SEED); //Παιρνάμε το φύτρο των ψευδοτυχαιών 
     double *train_dataset=NULL, *query_dataset=NULL;
     int num_train=0, num_query=0, dim=0, query_dim=0; //Αρχικοποιούμε τις διαστάσεις σε 0

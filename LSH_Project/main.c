@@ -201,40 +201,40 @@ double calculate_recall(const NearestNeighbor* lsh_nn,const NearestNeighbor* tru
     }
     return (double)hits; // Επιστρέφουμε τον αριθμό των hits ως double
 }
-extern char *optarg;
-extern int optind,opterr,optopt;
-int R_search_enabled = 1;
 
 int main(int argc,char*argv[]){
     char *train_file_path=NULL; // Aρχικοποιούμε τα filenames και το είδος του αρχείου εισαγωγής
     char *query_file_path=NULL;
     char *output_file_path=NULL;
     int data_type=DATA_TYPE_SIFT; // 
-    int opt;// Θα μας βοηθήσει με την getopt να διακρίνουμε τις περιπτώσεις των arguments
-    while((opt=getopt(argc,argv,"d:q:k:L:N:R:w:s:t:o:"))!=-1){
-        switch(opt){
-            case 'd': train_file_path=optarg; break;
-            case 'q': query_file_path=optarg; break;
-            case 'k': K=atoi(optarg); if(K<=0){printf("error\n"); return 1;} break;
-            case 'L': L=atoi(optarg); if(L<=0){printf("error\n"); return 1;} break;
-            case 'N': N=atoi(optarg); if(N<=0){printf("error\n"); return 1;} break;
-            case 'R': R=atof(optarg); if(R<=0){printf("error\n"); return 1;} break;
-            case 'w': W=atof(optarg); if(W<=0){printf("error\n"); return 1;} break;
-            case 's': SEED=atoi(optarg); break;
-            case 't': // Επιλέγουμε μεταξύ mnsit και sift δεδομένα
-                if(strcasecmp(optarg,"sift")==0) data_type=DATA_TYPE_SIFT;
-                else if(strcasecmp(optarg,"mnist")==0) data_type=DATA_TYPE_MNIST;
-                else {printf("error\n"); return 1;}
-                break;
-            case 'o': output_file_path=optarg; break;
-            case 'z':
-                if(strcasecmp(optarg,"true")==0) R_search_enabled=1;
-                else if(strcasecmp(optarg,"false")==0) R_search_enabled=0;
-                else {printf("error\n"); return 1;}
-                break;
-            case '?':
-            default: printf("Usage: %s -d <train> -q <query> [-k K] [-L L] [-N N] [-R R] [-w W] [-t <sift|mnist>] [-s seed] [-o <output file>] [--range <true|false>]\n",argv[0]); return 1;
+    int use_range=0 ;// Για το range
+    int use_lsh = 0;  // για το --lsh
+    for(int i=1;i<argc;++i){
+    if(strcmp(argv[i],"-d")==0&&i+1<argc) train_file_path=argv[++i];
+    else if(strcmp(argv[i],"-q")==0&&i+1<argc) query_file_path=argv[++i];
+    else if(strcmp(argv[i],"-k")==0&&i+1<argc) K=atoi(argv[++i]);
+    else if(strcmp(argv[i],"-L")==0&&i+1<argc) L=atoi(argv[++i]);
+    else if(strcmp(argv[i],"-w")==0&&i+1<argc) W=atof(argv[++i]);
+    else if(strcmp(argv[i],"-N")==0&&i+1<argc) N=atoi(argv[++i]);
+    else if(strcmp(argv[i],"-R")==0&&i+1<argc) R=atof(argv[++i]);
+    else if(strcmp(argv[i],"-o")==0&&i+1<argc) output_file_path=argv[++i];
+    else if(strcmp(argv[i],"-type")==0&&i+1<argc){
+        if(strcasecmp(argv[i+1],"sift")==0) data_type=DATA_TYPE_SIFT;
+        else if(strcasecmp(argv[i+1],"mnist")==0) data_type=DATA_TYPE_MNIST;
+        else{fprintf(stderr,"Unknown  dataset type: %s\n",argv[i+1]); 
+            exit(1);
         }
+        i++; 
+    }
+    else if(strcmp(argv[i],"-range")==0&&i+1<argc){
+        if(strcasecmp(argv[i+1],"true")==0) use_range=1;
+        else if(strcasecmp(argv[i+1],"false")==0) use_range=0;
+        else{fprintf(stderr,"Unknown range value: %s\n",argv[i+1]); 
+            exit(1);}
+        i++;
+    }
+    else if(strcmp(argv[i],"-lsh")==0) use_lsh=1;
+    else{fprintf(stderr,"Unknown or incomplete option: %s\n",argv[i]); exit(1);}
     }
     if(!train_file_path||!query_file_path||!output_file_path){ //ελέχουμε ότι τα πεδιά των αρχείων δεν είναι κενά 
         fprintf(stderr,"Files not included");
@@ -265,7 +265,8 @@ int main(int argc,char*argv[]){
     FILE *out=fopen(output_file_path,"w"); // Ανοίγουμε το αρχείο για εγγραφή σε αυτό 
     if(!out){ // Αν δεν ανοίξει error
         printf("error\n"); 
-        return 1;}
+        return 1;
+    }
     hashtable *lsh_tables=malloc(sizeof(hashtable)*L); // δεσμεύουμε μνήμη για τα L hastables , τα αρχικοποιούμε και βάζουμε σε αυτά τα vectors
     for(int i=0;i<L;++i){
         initHashTable(&lsh_tables[i],dim);
@@ -278,11 +279,14 @@ int main(int argc,char*argv[]){
     int max_queries=(num_query>100)?100:num_query; // Μεγιστος αριθμός που θα εξτάσουμε ειναι 100 
     for(int q=0;q<max_queries;++q){// Για max_queries φορές, θα κάνουμε σύγκρισεις
         const double *qvec=&query_dataset[(size_t)q*dim];//  αντλούμε το query από το trainset
+        NearestNeighbor *lsh_nn = NULL;  
+        if (use_lsh) {
         clock_t ta=clock();//Αρχιζουμε την χρονομέτρηση για το lsh nn search και το εκετελούμε 
-        NearestNeighbor *lsh_nn=find_l_nn(lsh_tables,qvec,train_dataset,num_train,N,dim);
+        lsh_nn=find_l_nn(lsh_tables,qvec,train_dataset,num_train,N,dim);
         clock_t tb=clock();  // Πα΄ρινουμε τον επόμενο χρόνο, την στιγμή λήξης και βρίσκουμε την διαφορά τους και την διαιρούμε με την μονάδα του χρόνου ( 1 ρολόι)
         double lsh_time=(double)(tb-ta)/CLOCKS_PER_SEC; 
         total_lsh_time+=lsh_time;// Το προσθέτουμε στον συνολικό χρόνο 
+        }
         int num_R_neighbors=0,*R_indices=NULL;  // Αρχικοποιούμε τις μεταβλητές για το range search
         clock_t tc=clock(); // Κάνουμε το ίδιο για τον χρόνο του brute force.
         NearestNeighbor *true_nn=BruteForceSearch(train_dataset,num_train,dim,qvec,N,R,&num_R_neighbors,&R_indices);
@@ -321,7 +325,7 @@ int main(int argc,char*argv[]){
             fprintf(out,"distanceTrue: %.6f\n",true_d);
         }
         fprintf(out,"R-near neighbors:\n");
-        if(R_search_enabled){ // Αν έχουμε ενεργοποιήσει το range search, σε περιπτωση που δεν βρεθεί εικόνα επιστρέφετα μηνυμα, ειδάλλως γράφονται τα διανύσματα του R indices
+        if(use_range){ // Αν έχουμε ενεργοποιήσει το range search, σε περιπτωση που δεν βρεθεί εικόνα επιστρέφετα μηνυμα, ειδάλλως γράφονται τα διανύσματα του R indices
             if(num_R_neighbors<=0) fprintf(out,"Καμία εικόνα\n");
             else for(int r=0;r<num_R_neighbors;++r) fprintf(out,"%d\n",R_indices[r]);
         }else fprintf(out,"Range Search Disabled\n");
