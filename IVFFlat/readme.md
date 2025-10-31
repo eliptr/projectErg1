@@ -9,7 +9,6 @@
 - Υποστήριξη MNIST και SIFT datasets
 - Nearest neighbor search (N-NN)
 - Range search (R-radius)
-- Compact single-line output format
 
 ---
 
@@ -17,19 +16,16 @@
 
 ```
 ivfflat/
-├── ivfflat.h       # Header με data structures & kmean algorithms
-├── ivfflat.h       # Header με ivf algorithms
-├── dataload.h      # Header με data loading algorithms
-├── ivfflat.c       # ivfflat function implementation
-├── kmeans.c        # kmeans function implementation
-├── dataloading.c   # dataloading function implementation
-├── search.c        # Main program
-├── Makefile        # Build automation
-├── res/            # directory with minst/sift resources
-└── README.md       # Τεκμηρίωση (αυτό το αρχείο)
+├── ivfflat.c/h       # ivfflat function implementation (create, build, search, free);
+├── kmeans.c/h        # kmeans and utility function implementation (euclidean distance, vector ops, kmeans ops)
+├── dataloading.c/h   # dataloading function implementation
+├── search.c          # Main program
+├── Makefile          # Build automation
+├── res/              # directory with minst/sift resources
+└── README.md         # Τεκμηρίωση (αυτό το αρχείο)
 ```
 
-## 🔧 Εγκατάσταση & Μεταγλώττιση
+##  Εγκατάσταση & Μεταγλώττιση
 
 ### Απαιτήσεις:
 - GCC compiler (C99 ή νεότερο)
@@ -42,8 +38,6 @@ ivfflat/
 # Βασική compilation
 make
 
-# Καθαρισμός
-make clean
 ```
 
 ---
