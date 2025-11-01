@@ -48,12 +48,12 @@ make
 ### Παραδείγματα
 #### MNIST
 ```bash
-./search   -d data/train-images.idx3-ubyte   -q data/t10k-images.idx3-ubyte   -k 10 -L 40 -w 200 -N 5 -R 1200   -o results.txt   -type mnist -range true -lsh
+./search   -d res/train-images.idx3-ubyte -q res/t10k-images.idx3-ubyte   -k 10 -L 40 -w 200 -N 5 -R 1200   -o results.txt   -type mnist -range true -lsh
 
 ```
 #### SIFT
 ```bash
-./search   -d data/sift/sift_base.fvecs   -q data/sift/sift_query.fvecs   -k 16   -L 1   -w 600   -N 5   -R 30   --o results.txt  -type sift   -range false   -lsh
+./search  -d res/sift_base.fvecs -q res/sift_query.fvecs   -k 16   -L 1   -w 600   -N 5   -R 30   --o results.txt  -type sift   -range false   -lsh
 ## Μορφή Εξόδου
 ```
 LSH
