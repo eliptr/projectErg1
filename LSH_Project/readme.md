@@ -55,6 +55,9 @@ make
 ```bash
 ./search  -d res/sift_base.fvecs -q res/sift_query.fvecs   -k 16   -L 1   -w 600   -N 5   -R 30   --o results.txt  -type sift   -range false   -lsh
 ## Μορφή Εξόδου
+
+
+```
 ```
 LSH
 Query: 0
@@ -82,7 +85,7 @@ Recall@5: 0.7780
 QPS: 7.41
 tApproximateAverage: 0.134912 sec
 tTrueAverage: 0.357533 sec
-
+```
 #### Αλγόριθμος
 
 ### 1. Hash Function Construction
