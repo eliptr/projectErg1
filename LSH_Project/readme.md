@@ -13,7 +13,7 @@
 - **N-nearest neighbors** και **Range (R-near)** αναζήτηση
 - Μετρικές απόδοσης: **AF**, **Recall@N**, **QPS**, **tApproximateAverage**, **tTrueAverage**
 
-- ## Δομή Αρχείων 
+## Δομή Αρχείων 
 LSH_Project/
 ├── lsh.c             # Υλοποίηση LSH (hash functions, hash tables, search)
 ├── lsh.h             # Header για lsh.c
