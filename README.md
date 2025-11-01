@@ -55,8 +55,14 @@ make
 | `-algorithm`| Mode flag             | -            | `-ivfflat`, `ivfpq`, `lsh`, `hypercube`
 
 ### algorithm_specific_parameters : οι πάραμετροι για κάθε αλγόριθμο βρίσκονται στα readme του κάθε αλγορίθμου αντίστοιχα:
- - IVF flat : -kclusters <int> -nprobe <int> -N <int>
- - IVF PQ : -kclusters <int> -nprobe <int> -M <int> -nbits <int> -N <int>
+- **IVF Flat** :  
+  `-kclusters <int>` `-nprobe <int>` `-N <int>`
+- **IVF PQ** :  
+  `-kclusters <int>` `-nprobe <int>` `-M <int>` `-nbits <int>` `-N <int>`
+- **LSH (Locality Sensitive Hashing)** :  
+  `-seed <int>` `-k <int>` `-L <int>` `-w <float>` `-N <int>`
+- **Hypercube (Random Projection on Hypercube)** :  
+  `-seed <int>` `-kproj <int>` `-w <float>` `-M <int>` `-probes <int>` `-N <int>`
 ---
 
 ## 💡 Παραδείγματα Χρήσης
