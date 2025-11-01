@@ -46,6 +46,13 @@ make
 - `-range <true|false>` - Ενεργοποίηση range search (default: true)
 - `-lsh` - Flag για επιλογή μεθόδου LSH
 ### Παραδείγματα
+#### MNIST
+```bash
+./search   -d data/train-images.idx3-ubyte   -q data/t10k-images.idx3-ubyte   -k 10 -L 40 -w 200 -N 5 -R 1200   -o mnist_results_slow_highrecall.txt   -type mnist -range true -lsh
+
+```
+#### SIFT
+```bash
 ./search   -d data/sift/sift_base.fvecs   -q data/sift/sift_query.fvecs   -k 16   -L 1   -w 600   -N 5   -R 30   -o sift_results_fast.txt   -type sift   -range false   -lsh
 ## Μορφή Εξόδου
 ```
