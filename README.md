@@ -65,7 +65,7 @@ make
   `-seed <int>` `-kproj <int>` `-w <float>` `-M <int>` `-probes <int>` `-N <int>`
 ---
 
-## 💡 Παραδείγματα Χρήσης
+## Παραδείγματα Χρήσης
 
 ### 1. MNIST Dataset (10 πλησιέστεροι):
 ./search -d res/train-images.idx3-ubyte -q res/t10k-images.idx3-ubyte -o results.txt -type mnist -kclusters 50 -nprobe 10 -M 32 -nbits 8 -N 5 -R 2000 -ivfpq
