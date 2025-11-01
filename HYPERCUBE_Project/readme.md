@@ -33,12 +33,12 @@ make
 
 #### MNIST
 ```bash
-./search -d data/mnist/train-images.idx3-ubyte  -q data/t10k-images.idx3-ubyte -kproj 14 -w 4.0 -M 1000 -probes 20   -o results.txt -N 5 -R 2.0 -type mnist -range false -hypercube
+./search  -d res/train-images.idx3-ubyte -q res/t10k-images.idx3-ubyte  -kproj 14 -w 4.0 -M 1000 -probes 20   -o results.txt -N 5 -R 2.0 -type mnist -range false -hypercube
 ```
 
 #### SIFT
 ```bash
-./search -d data/sift/sift_base.fvecs  -q data/sift/sift_query.fvecs   -kproj 12 -w 15.0 -M 500000 -probes 1000  -o results.txt -N 5 -R 2.0 -type sift -range false -hypercube
+./search -d res/sift_base.fvecs -q res/sift_query.fvecs   -kproj 12 -w 15.0 -M 500000 -probes 1000  -o results.txt -N 5 -R 2.0 -type sift -range false -hypercube
 ```
 
 ## Μορφή Εξόδου
