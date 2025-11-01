@@ -82,8 +82,8 @@ Recall@5: 0.7780
 QPS: 7.41
 tApproximateAverage: 0.134912 sec
 tTrueAverage: 0.357533 sec
-```
-## Αλγόριθμος
+
+#### Αλγόριθμος
 
 ### 1. Hash Function Construction
 - Δημιουργία `k` τυχαίων διανυσμάτων προβολής `v_i`
