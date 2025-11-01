@@ -14,12 +14,15 @@
 - Μετρικές απόδοσης: AF, Recall@N, QPS, Silouhette 
 
 ## Δομή Αρχείων
-- `main.c` - Κύριο πρόγραμμα, parsing arguments
-- `vector.c/h` - Διαχείριση διανυσμάτων, I/O functions
-- `kmeans.c/h` - K-means clustering με K-means++
-- `ivfpq.c/h` - Κύρια υλοποίηση IVFPQ
-- `search.c/h` - Exhaustive search, metrics
-- `Makefile` - Build script
+ivfpq/
+├── ivffpq.c/h        # ivfpq function implementation (create, build, search, free)
+├── kmeans.c/h        # kmeans and utility function implementation (euclidean distance, vector ops, kmeans ops)
+├── dataloading.c/h   # dataloading and utility functions implementation
+├── search.c          # Main program, parsing arguments
+├── Makefile          # Build automation
+├── res/              # directory with minst/sift resources
+└── README.md         # Τεκμηρίωση (αυτό το αρχείο)
+
 
 ## Μεταγλώττιση
 
@@ -126,5 +129,5 @@ tTrueAverage: 1.234567
 - Μείωση `nbits`: μικρότερα codebooks
 
 ## Developers
-- [Όνομα Φοιτητή 1] - [AM1]
-- [Όνομα Φοιτητή 2] - [AM2]
+- Πετρίδου Ελισάβετ - sdi2300170
+- Κυριακού Χρήστος - sdi2300096
