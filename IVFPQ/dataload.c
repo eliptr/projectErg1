@@ -9,7 +9,7 @@
 #include "dataload.h"
 
 
-// URILITY FUNCTIONS
+// Urility functions
 
 double get_time() {
     struct timeval tv;
@@ -59,7 +59,7 @@ float compute_recall(SearchResult *approx, int approx_count, SearchResult *exact
     return (float)matches / exact_count;
 }
 
-// DATA LOAD
+// Data Load
 
 Vector* load_mnist(const char *filename, int *count, int *dim, int isQuery) {
     FILE *fp = fopen(filename, "rb");

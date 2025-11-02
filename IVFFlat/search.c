@@ -14,8 +14,7 @@
 
 // Brute Force Search (Ground Truth)
 
-Neighbor* brute_force_search(Vector** vectors, int n, Vector* query, 
-                             int N, int* result_count) {
+Neighbor* brute_force_search(Vector** vectors, int n, Vector* query, int N, int* result_count) {
     Neighbor* all = (Neighbor*)malloc(n * sizeof(Neighbor));
     if (!all) return NULL;
     
